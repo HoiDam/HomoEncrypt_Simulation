@@ -1,6 +1,6 @@
 import random
 
-from common.Constant import max_X, max_Y, min_X, min_Y
+from Constant import max_X, max_Y, min_X, min_Y, center_X, center_Y
 
 class ClientEntity:
     def __init__(self,id):
@@ -11,10 +11,13 @@ class ClientEntity:
     def getLocation(self):
         return [self.x,self.y]
     
+    def getID(self):
+        return self.id
+    
 class HostEntity:
     def __init__(self):
-        self.x = 0
-        self.y = 0
+        self.x = center_X
+        self.y = center_Y
         
     def getLocation(self):
         return [self.x,self.y]

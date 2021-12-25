@@ -10,6 +10,10 @@ COMP - Final Year Project (Individual)
 1. pycrypto
 2. Pandas
 3. Numpy
+4. pyvis
+5. arcade
+6. shapely
+7. drawtree
 ---
 ## Folder Structure
 - TBA
@@ -26,23 +30,10 @@ COMP - Final Year Project (Individual)
 ## Data Transmit  
 -  Total utility usage in a neighborhood
 
-
+---
+### References
+1.  https://towardsdatascience.com/visualizing-networks-in-python-d70f4cbeb259
 
 ---
 #### Meeting Notes
-1. Sep,2021
-- Mentioned High Level Goal Of this project 
-- Research from 3 existing IEEE thesis
-- Choose 1 of 3 to be topic
-- Focus on implementation
-- If available -> Enchance the system
-  
-2. Nov,2021
-- Reviewed Project Proposal (Chosen 1)
-- Went through that thesis and explained complicated details
-- Language: Python 
-- Interium Report target : CLI simlation (HE message through all the nodes)
-- Final Report target : GUI
-
-3. Dec,2021 (1) 
-- TBA
+-   TBA
