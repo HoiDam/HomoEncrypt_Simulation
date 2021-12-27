@@ -30,10 +30,10 @@ class main_sim(arcade.Window):
         arcade.start_render()
 
         x,y = self.Host.getLocation()
-        self.drawEntity(x, y, HOST_TEXT, arcade.color.RED)
+        self.drawEntity(x, max_Y - y, HOST_TEXT, arcade.color.RED)
         for client in self.ClientArray:
             x,y = client.getLocation()
-            self.drawEntity(x,y, str(client.getID()),arcade.color.BLUE)
+            self.drawEntity(x,max_Y - y, str(client.getID()),arcade.color.BLUE)
 
     def drawEntity(self,x,y,text,color):
         arcade.draw_circle_outline(x, y, CIRCLE_SIZE, color, CIRCLE_BORDER_WIDTH,NUM_SEGMENTS)

@@ -19,7 +19,6 @@ def runTree(Host,ClientArray):
             else:
                 origin = ClientArray[id].getLocation()
             
-            print(id)
             rank = []
             for client in ClientArray:
                 if client.getID() not in removed:
@@ -40,9 +39,9 @@ def runTree(Host,ClientArray):
                 if len(rank)>0:
                     q.append(remove_node)
         
-    print(result)
-
-    print(draw_level_order(arraySerializer(result)))
+    # print(result)
+    draw_level_order(arraySerializer(result))
+    return result
 
 
 def cal_distance(originArray,targetArray):
@@ -53,3 +52,4 @@ def arraySerializer(array):
     string += ",".join(str(x) for x in array)
     string += "]"
     return string
+
