@@ -11,8 +11,7 @@ for i in range(no_of_clients):
     ClientArray.append(ClientEntity(i))
 
 # runGeographic(Host, ClientArray)
-# aggregation_tree = runTree(Host,ClientArray)
-# connections = runNetwork(Host, ClientArray,aggregation_tree)
+aggregation_tree = runTree(Host,ClientArray)
+connections = runNetwork(Host, ClientArray,aggregation_tree)
 # print(connections)
-connections = None
 runInstances(Host, ClientArray,connections)

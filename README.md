@@ -7,13 +7,12 @@ COMP - Final Year Project (Individual)
 
 ---
 ## Library Included
-1. pycrypto
+1. phe
 2. Pandas
 3. Numpy
 4. pyvis
 5. arcade
-6. shapely
-7. drawtree
+6. drawtree
 ---
 ## Folder Structure
 - TBA
