@@ -17,6 +17,8 @@ HOST_TEXT = "HOST"
 SCREEN_WIDTH = max_X + min_X
 SCREEN_HEIGHT = max_Y + min_Y
 
+TEXT_TEMPLATE = "[{},{}]"
+
 class main_sim(arcade.Window):
     def __init__(self,Host,ClientArray):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT+100, "Geographic")
@@ -28,7 +30,6 @@ class main_sim(arcade.Window):
     def on_draw(self):
         
         arcade.start_render()
-
         x,y = self.Host.getLocation()
         self.drawEntity(x, max_Y - y, HOST_TEXT, arcade.color.RED)
         for client in self.ClientArray:
@@ -44,6 +45,14 @@ class main_sim(arcade.Window):
                         DEFAULT_FONT_SIZE,
                         width=CIRCLE_SIZE,
                         align="left")
+        arcade.draw_text(TEXT_TEMPLATE.format((x),str(y)),
+                        x + CIRCLE_SIZE + TEXT_TOOLTIP_ADD, 
+                        y - CIRCLE_SIZE - TEXT_TOOLTIP_ADD,
+                        color,
+                        DEFAULT_FONT_SIZE,
+                        width=CIRCLE_SIZE,
+                        align="left")
+            
 
 def runGeographic(Host,ClientArray):
     print(Host.getLocation())
