@@ -2,13 +2,14 @@ import threading
 import requests
 import random
 import json
+import time
 from flask import Flask, request
 from phe import paillier
 
 from Constant import ip_template,ip,client_port,host_port,cli_ip
 
 def runInstances(Host, ClientArray,connections):
-
+    report_hostup() # fake host up
     # --- Client Instantiating -------------
     appArray = []
     for i in range(len(ClientArray)):
@@ -26,10 +27,12 @@ def runInstances(Host, ClientArray,connections):
             id = int(request.host.split(":")[1]) - client_port
             consumed = random.randint(1,10) 
             report_child_consumed(id,consumed)
+            time.sleep(2)
 
             if id in connections:
                 for child in connections[id]:
                     report_contacting(id,child)
+                    time.sleep(2)
                     consumed_json = requests.get(ip_template.format(ip,client_port+child)+'/child_retrieve').json()
                     consumed += cipherDeserializer(public_key,consumed_json) 
             else:
@@ -43,6 +46,7 @@ def runInstances(Host, ClientArray,connections):
     for i in range(len(threadArray)):
         threadArray[i].start()
         report_clientup(i)
+        time.sleep(1)
 
     # ------------------------------------
 
@@ -58,6 +62,7 @@ def runInstances(Host, ClientArray,connections):
         id = -1
         for child in connections[id]:
             report_contacting(id,child)
+            time.sleep(2)
             consumed_json = requests.get(ip_template.format(ip,client_port+child)+'/child_retrieve').json()
             consumed += cipherDeserializer(public_key,consumed_json) 
         consumed = private_key.decrypt(consumed)
@@ -71,8 +76,7 @@ def runInstances(Host, ClientArray,connections):
                                 "n":public_key.n
                             }
         })
-
-    report_hostup()
+    # report_hostup()
     app.run(host = ip, port = host_port, debug=False, threaded=True)
     # ------------------------------------
 

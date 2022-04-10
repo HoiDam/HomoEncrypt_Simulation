@@ -7,17 +7,39 @@ class ClientEntity:
         self.id = id
         self.x = random.randint(min_X, max_X)
         self.y = random.randint(min_Y, max_Y)
-    
+        self.status = "Offline"
+        self.consumption = 0
+        
     def getLocation(self):
         return [self.x,self.y]
     
     def getID(self):
         return self.id
     
+    def getStatus(self):
+        return self.status
+
+    def getConsumption(self):
+        return self.consumption
+    
+    def setConsumption(self,consumption):
+        self.consumption = consumption
+    
+    def setStatusOnline(self):
+        self.status = "Online"     
+        
+
 class HostEntity:
     def __init__(self):
         self.x = center_X
         self.y = center_Y
+        self.status = "Offline"
         
     def getLocation(self):
         return [self.x,self.y]
+    
+    def getStatus(self):
+        return self.status
+    
+    def setStatusOnline(self):
+        self.status = "Online" 
