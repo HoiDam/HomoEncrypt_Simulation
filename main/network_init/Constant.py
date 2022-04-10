@@ -10,7 +10,7 @@ center_X = int(max_X*0.5)
 center_Y = int(max_Y*0.5)
 
 # Number of Clients
-no_of_clients = 16
+no_of_clients = 8
 
 # CLI Server 
 cli_ip = "http://127.0.0.3:3000/"
