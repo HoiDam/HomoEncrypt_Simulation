@@ -9,6 +9,7 @@ class ClientEntity:
         self.y = random.randint(min_Y, max_Y)
         self.status = "Offline"
         self.consumption = 0
+        self.reporting = ""
         
     def getLocation(self):
         return [self.x,self.y]
@@ -22,11 +23,17 @@ class ClientEntity:
     def getConsumption(self):
         return self.consumption
     
+    def getReporting(self):
+        return self.reporting
+    
     def setConsumption(self,consumption):
         self.consumption = consumption
     
     def setStatusOnline(self):
         self.status = "Online"     
+    
+    def setReporting(self,reporting):
+        self.reporting = reporting
         
 
 class HostEntity:

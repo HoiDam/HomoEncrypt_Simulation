@@ -26,18 +26,16 @@ def runInstances(Host, ClientArray,connections):
 
             id = int(request.host.split(":")[1]) - client_port
             consumed = random.randint(1,10) 
+            report_consumed = consumed
             report_child_consumed(id,consumed)
-            time.sleep(2)
-
             if id in connections:
                 for child in connections[id]:
                     report_contacting(id,child)
-                    time.sleep(2)
                     consumed_json = requests.get(ip_template.format(ip,client_port+child)+'/child_retrieve').json()
                     consumed += cipherDeserializer(public_key,consumed_json) 
             else:
                 consumed = public_key.encrypt(consumed)
-
+            report_reporting_to_parent(report_consumed,id)
             return cipherSerializer(public_key, consumed)
 
     threadArray = []
@@ -46,7 +44,7 @@ def runInstances(Host, ClientArray,connections):
     for i in range(len(threadArray)):
         threadArray[i].start()
         report_clientup(i)
-        time.sleep(1)
+        
 
     # ------------------------------------
 
@@ -62,7 +60,6 @@ def runInstances(Host, ClientArray,connections):
         id = -1
         for child in connections[id]:
             report_contacting(id,child)
-            time.sleep(2)
             consumed_json = requests.get(ip_template.format(ip,client_port+child)+'/child_retrieve').json()
             consumed += cipherDeserializer(public_key,consumed_json) 
         consumed = private_key.decrypt(consumed)
@@ -77,6 +74,7 @@ def runInstances(Host, ClientArray,connections):
                             }
         })
     # report_hostup()
+    report_network_done()
     app.run(host = ip, port = host_port, debug=False, threaded=True)
     # ------------------------------------
 
@@ -98,17 +96,28 @@ def report_hostup():
 
 def report_clientup(id):
     requests.get(cli_ip+"/client_up/"+str(id))
+    time.sleep(1)
 
 def report_child_consumed(id,consumed):
     jsonFile = {"id":id,"consumed":consumed}
     requests.post(cli_ip+"/child_consumed",json=jsonFile)
+    time.sleep(3)
 
 def report_final(consumed):
     jsonFile = {"consumed":consumed}
     requests.post(cli_ip+"/total_consumed/system_count",json = jsonFile)
-    requests.get(cli_ip+"/total_consumed/cache")
+    
 
 def report_contacting(id,child):
     jsonFile = {"from":id,"to":child}
     requests.post(cli_ip+"/contacting_to",json = jsonFile)
+    time.sleep(3)
+
+def report_network_done():
+    requests.get(cli_ip+"/network_done")
+
+def report_reporting_to_parent(consumed,id):
+    jsonFile = {"consumed":consumed,"id":id}
+    requests.post(cli_ip+"/reporting_to_parent",json=jsonFile)
+    time.sleep(3)
 # ----------------------

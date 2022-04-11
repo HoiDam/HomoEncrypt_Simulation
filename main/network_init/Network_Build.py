@@ -18,7 +18,7 @@ for i in range(no_of_clients):
 # runGeographic(Host, ClientArray)
 aggregation_tree = runTree(Host,ClientArray)
 connections = runNetwork(Host, ClientArray,aggregation_tree)
-print(connections)
+# print(connections)
 
 # ---
 
