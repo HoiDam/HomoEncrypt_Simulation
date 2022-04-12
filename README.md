@@ -14,14 +14,17 @@ COMP - Final Year Project (Individual)
 5. arcade
 6. drawtree
 ---
+
+## Get started
+```
+python ./main/network_init/Network_Build.py
+```
+
+---
 ## Folder Structure
 ```
 HomoEncrypt_Simulation
 ├─ main
-│  ├─ cli
-│  │  └─ CLI.py
-│  ├─ gui
-│  │  └─ GUI.py
 │  ├─ network_init
 │  │  ├─ Constant.py
 │  │  ├─ Entity.py
@@ -30,7 +33,10 @@ HomoEncrypt_Simulation
 │  │  ├─ Show_Geographic.py
 │  │  ├─ Show_Network.py
 │  │  ├─ Show_Tree.py
+│  │  ├─ GUI.py
 │  │  └─ visualized_network.html
+│  ├─ UI
+│  │  └─ CLI.py
 │  └─ __init__.py
 └─ __main__.py
 
@@ -47,7 +53,7 @@ HomoEncrypt_Simulation
 
 ```
 ## Data Transmit  
--  Total electricty usage(unit) in a neighborhood
+-  Total electricty usage(kW) in a neighborhood
 
 ---
 ### References

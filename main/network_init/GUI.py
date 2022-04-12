@@ -9,8 +9,6 @@ import requests
 
 from Constant import max_X, max_Y, min_X, min_Y
 
-
-
 DEFAULT_FONT_SIZE = 11
 NARRATION_FONT_SIZE = 28
 CONSUMPTION_FONT_SIZE = 16
@@ -65,8 +63,6 @@ class main_sim(arcade.Window):
                 self.drawConnections(x1,y1,x2,y2,status,color)
         self.drawNarration(self.narration)
     
-            
-
     def drawEntity(self,x,y,text,color,status):
         if status == "Offline":
             color = arcade.color.BLACK
